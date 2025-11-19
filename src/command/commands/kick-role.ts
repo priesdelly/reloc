@@ -71,6 +71,7 @@ const handlers: InteractionHandlers = {
 
     const [protectedMembers, members] = chain(roles)
       .flatMap(role => Array.from(role.members.values()))
+      .filter(m => !!m.voice.channelId)
       .filter(m => withBot || !m.user.bot)
       .shuffle()
       .sortBy(orderGuildMembers({
